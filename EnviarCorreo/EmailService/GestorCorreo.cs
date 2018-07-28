@@ -27,7 +27,7 @@ namespace EmailService
         {
             var builder = new ConfigurationBuilder()
                                     .SetBasePath(Directory.GetCurrentDirectory())
-                                    .AddXmlFile("Configuracion.xml");
+                                    .AddXmlFile("Configuration.xml");
             Configuration = builder.Build();
         }
         public void EnviarCorreo(string destinatario, string asunto, string mensaje,bool esHtlm = false)
