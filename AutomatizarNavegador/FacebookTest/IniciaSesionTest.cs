@@ -42,7 +42,7 @@ namespace FacebookTest
             login.IngresarPassword(contraseña);
             login.IniciarSesion();
             var error = new ErrorLogin(_driver);
-            Assert.Equal("Inicia sesión en Facebook", error.GetMensajeError());
+            Assert.Equal("Iniciar sesión en Facebook | Facebook", error.GetMensajeError());
         }
     }
 }

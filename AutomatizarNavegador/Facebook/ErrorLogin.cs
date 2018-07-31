@@ -16,8 +16,8 @@ namespace Facebook
         }
         public string GetMensajeError()
         {
-            var mensajeDeErrorElement = _driver.FindElement(By.CssSelector(ErrorText));
-            return mensajeDeErrorElement.Text;
+            //var mensajeDeErrorElement = _driver.FindElement(By.CssSelector(ErrorText));
+            return _driver.Title;
         }
     }
 }
