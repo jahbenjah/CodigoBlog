@@ -1,8 +1,22 @@
-﻿@{
+﻿@model GithubUser
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@Model.name</h1>
+    <p>
+        @Model.login
+
+        <a href="@Model.html_url">Perfils</a>
+        <img src="@Model.avatar_url" />
+
+        @Model.location
+        @Model.blog
+        @Model.location
+        @Model.email
+    </p>
+
+
 </div>

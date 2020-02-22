@@ -25,7 +25,7 @@ namespace IntroWebApi
         {
             services.AddHttpClient("Github", client =>
             {
-                client.BaseAddress = new Uri("https://www.github.com/api");
+                client.BaseAddress = new Uri("https://api.github.com");
                 client.DefaultRequestHeaders.Add("User-Agent", "aspnetcoremaster.com");
             });
             services.AddControllersWithViews();

@@ -1,5 +1,3 @@
-using System;
-
 namespace IntroWebApi.Models
 {
     public class ErrorViewModel
