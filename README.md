@@ -12,4 +12,5 @@ Aunque generalmente uso Visual Studio Code para las instrucciones del blog puede
 
 # [Enviar un correo con C# y Gmail](https://aspnetcoremaster.com/.net/smtp/smptclient/dotnet/2018/07/22/enviar-un-correo-con-csharp-gmail.html)
 
-Las carpetas del codigo utilizado en este articulos son _EnviarCorreo_ 
+Este proyecto ha sido actualizado a .NET Core 3.1
+Las carpetas del código utilizado en este articulos son _EnviarCorreo_ 
