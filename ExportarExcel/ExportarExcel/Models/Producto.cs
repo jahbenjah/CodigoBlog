@@ -12,6 +12,7 @@ namespace ExportarExcel.Models
 
         [Required]
         [Display(Name = "Producto")]
+      
         [StringLength(100)]
         public string Nombre { get; set; }
 

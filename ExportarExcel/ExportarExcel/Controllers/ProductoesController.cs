@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExportarExcel.Data;
 using ExportarExcel.Models;
+using OfficeOpenXml;
+using OfficeOpenXml.Table;
 
 namespace ExportarExcel.Controllers
 {
@@ -145,6 +147,29 @@ namespace ExportarExcel.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        public IActionResult ExportarExcel()
+        {
+            string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            var productos = _context.Productos.AsNoTracking().ToList();
+            using (var libro = new ExcelPackage())
+            {
+                var worksheet = libro.Workbook.Worksheets.Add("Productos");
+                worksheet.Cells["A1"].LoadFromCollection(productos, PrintHeaders: true);
+                for (var col = 1; col < productos.Count + 1; col++)
+                {
+                    worksheet.Column(col).AutoFit();
+                }
+
+                // Agregar formato de tabla
+                var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 1, fromCol: 1, toRow: productos.Count + 1, toColumn: 5), "Productos");
+                tabla.ShowHeader = true;
+                tabla.TableStyle = TableStyles.Light6;
+                tabla.ShowTotal = true;
+               
+                return File(libro.GetAsByteArray(), excelContentType, "Productos.xlsx");
+            }
+        }
         private bool ProductoExists(int id)
         {
             return _context.Productos.Any(e => e.Id == id);
