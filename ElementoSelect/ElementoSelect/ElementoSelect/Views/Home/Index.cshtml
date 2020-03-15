@@ -1,0 +1,12 @@
+﻿@model Pedido
+
+@{
+    ViewData["Title"] = "Select TagHelper";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Pruebas con el SelectTagHelp</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <select asp-for="Id" asp-items="Model.Clientes"></select>
+</div>
