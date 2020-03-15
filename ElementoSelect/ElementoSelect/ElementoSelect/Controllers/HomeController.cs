@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ElementoSelect.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ElementoSelect.Controllers
 {
@@ -21,13 +22,13 @@ namespace ElementoSelect.Controllers
         public IActionResult Index()
         {
             var model = new Pedido();
-            model.Clientes = new List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>()
+            model.Clientes = new List<SelectListItem>()
             {
-                new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem("Seleccionar cliente","0",true),
-                new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem("Cliente 2","1"),
-                new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem("Cliente 2","2"),
-                new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem("Cliente 3","3"),
-                new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem("Cliente 4","4"),
+                new SelectListItem("Seleccionar cliente","0",true),
+                new SelectListItem("Cliente 2","1"),
+                new SelectListItem("Cliente 2","2"),
+                new SelectListItem("Cliente 3","3"),
+                new SelectListItem("Cliente 4","4"),
             };
             return View(model);
         }

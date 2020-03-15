@@ -4,11 +4,12 @@
 // Write your JavaScript code.
 
 
-const selectElement = document.getElementById('Id');
+const selectElement = document.getElementById('ClienteId');
 selectElement.addEventListener('change', (event) => {
-    var select = event.target;
-    var select = event.target.s
-    alert(`You like ${select.value} : ${select.options.textContent}`);
+    console.log(event);
+    console.log(event.target.selectedOptions);
+    alert(`Seleccionaste ${event.target.value}`);
+
 });
 
 

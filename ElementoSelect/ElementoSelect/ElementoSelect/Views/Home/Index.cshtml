@@ -8,5 +8,34 @@
     <h1 class="display-4">Pruebas con el SelectTagHelp</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <select asp-for="Id" asp-items="Model.Clientes"></select>
+    <label asp-for="ClienteId" />
+    <select asp-for="ClienteId" asp-items="Model.Clientes"></select>
+</div>
+
+<div class="text-center">
+    <h1>Select HTML</h1>
+
+    <label for="talla-select">Talla:</label>
+    <select name="talla" id="talla-select">
+        <option value="">--Por favor elija su talla--</option>
+        <option value="CH">Chica</option>
+        <option value="M">Mediana</option>
+        <option value="G">Grande</option>
+        <option value="EG">Extra grande</option>
+    </select>
+
+    <!-- Seleccion multiple agrupado -->
+    <label for="sabor-select">Seleccione sabores :</label>
+    <select id="sabor" name="sabor-select" multiple size="8">
+        <optgroup label="Leche">
+            <option value="1">Chocolate</option>
+            <option value="2">Vainilla</option>
+            <option value="3">Fresa</option>
+        </optgroup>
+        <optgroup label="Agua">
+            <option value="4">Limón</option>
+            <option value="5">Mango</option>
+            <option value="6">Uva</option>
+        </optgroup>
+    </select>
 </div>
