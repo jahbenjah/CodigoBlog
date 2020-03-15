@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using ExportarExcel.Data;
+﻿using ExportarExcel.Data;
 using ExportarExcel.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ExportarExcel.Controllers
 {
@@ -152,17 +150,36 @@ namespace ExportarExcel.Controllers
         {
             string excelContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             var productos = _context.Productos.AsNoTracking().ToList();
+            
             using (var libro = new ExcelPackage())
             {
-                var worksheet = libro.Workbook.Worksheets.Add("Productos");
-                worksheet.Cells["A1"].LoadFromCollection(productos, PrintHeaders: true);
+                libro.Workbook.Properties.Author = "Benjamín Camacho";
+                libro.Workbook.Properties.Company = "aspnetcoremaster.com";
+                libro.Workbook.Properties.Keywords = "Excel,Epplus";
+
+                ExcelWorksheet hoja = libro.Workbook.Worksheets.Add("MiHoja de Excel");
+                ExcelWorksheet copiaHoja = libro.Workbook.Worksheets.Add("copia",hoja);
+                var hojaProductos = libro.Workbook.Worksheets.Add("Productos");
+
+                hoja.Cells["A1"].Value = "Valor asignado desde C#";
+                hoja.Cells["A1"].Style.Font.Color.SetColor(Color.Red);
+                hoja.Cells["A1"].Style.Font.Name = "Calibri";
+                hoja.Cells["A1"].Style.Font.Size = 40;
+
+
+                hoja.Cells["B1"].Value = "2020/03/07";
+                hoja.Cells["B1"].Style.Numberformat.Format = "dd/mm/aaaa";
+
+                hojaProductos.Cells["A1"].LoadFromCollection(productos, PrintHeaders: true);
+                
+                
                 for (var col = 1; col < productos.Count + 1; col++)
                 {
-                    worksheet.Column(col).AutoFit();
+                    hojaProductos.Column(col).AutoFit();
                 }
 
                 // Agregar formato de tabla
-                var tabla = worksheet.Tables.Add(new ExcelAddressBase(fromRow: 1, fromCol: 1, toRow: productos.Count + 1, toColumn: 5), "Productos");
+                var tabla = hojaProductos.Tables.Add(new ExcelAddressBase(fromRow: 1, fromCol: 1, toRow: productos.Count + 1, toColumn: 5), "Productos");
                 tabla.ShowHeader = true;
                 tabla.TableStyle = TableStyles.Light6;
                 tabla.ShowTotal = true;
